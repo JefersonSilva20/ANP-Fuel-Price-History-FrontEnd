@@ -9,8 +9,8 @@
                 <th scope="col">CNPJ</th>
                 <th scope="col">Produto</th>
                 <th scope="col">Data de Coleta</th>
-                <th scope="col">Preço venda</th>
                 <th scope="col">Preço Compra</th>
+                <th scope="col">Preço venda</th>
                 <th scope="col">Unidade de Medida</th>
                 <th scope="col">Bandeira</th>
             </tr>
@@ -24,8 +24,8 @@
                 <td>{{ collect.reseller.cnpj }}</td>
                 <td>{{ collect.product.name }}</td>
                 <td>{{ collect.date }}</td>
-                <td>{{ collect.salePrice }}</td>
                 <td>{{ collect.purchasePrice }}</td>
+                <td>{{ collect.salePrice }}</td>
                 <td>{{ collect.measurementUnit}}</td>
                 <td>{{ collect.banner.name | truncate}}</td>
             </tr>
