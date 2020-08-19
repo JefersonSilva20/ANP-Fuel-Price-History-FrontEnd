@@ -40,7 +40,6 @@ export class EditFuelPriceHistoryComponent implements OnInit {
         }
       }
     );
-
   }
 
   public delete() {
