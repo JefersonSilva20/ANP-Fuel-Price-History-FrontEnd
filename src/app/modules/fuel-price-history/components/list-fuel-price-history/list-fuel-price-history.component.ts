@@ -23,7 +23,7 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   @Output()
   public fuelsPriceHistoryChangeEvent: EventEmitter<Page<FuelPriceHistory>>;
 
-  public loading = true;
+  public loading: boolean = true;
 
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.fuelPriceHistorySelectEvent = new EventEmitter();
@@ -33,25 +33,20 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   selectItem(fuelPriceHistory: FuelPriceHistory) {
-    this.fuelPriceHistorySelect = fuelPriceHistory;   
-    this.fuelPriceHistorySelectEvent.emit(this.fuelPriceHistorySelect);
+    this.fuelPriceHistorySelectEvent.emit(fuelPriceHistory);
     console.log(`Selected:   ${JSON.stringify(fuelPriceHistory)}`);
-    
-    
   }
 
   public getFirstPage() {
     this.fuelPriceHistoryService.findAllWithPage(0).subscribe((data) => {
-      this.fuelPriceHistories = data;
+      this.fuelsPriceHistoryChangeEvent.emit(data);
     });
   }
 
   public getNextPage() {
     if (!this.fuelPriceHistories.last) {
       this.fuelPriceHistoryService.findAllWithPage(++this.fuelPriceHistories.number).subscribe((data) => {
-        this.fuelPriceHistories = data;
         this.fuelsPriceHistoryChangeEvent.emit(data);
       });
     }
@@ -60,15 +55,14 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   public getPreviousPage() {
     if (!this.fuelPriceHistories.first) {
       this.fuelPriceHistoryService.findAllWithPage(--this.fuelPriceHistories.number).subscribe((data) => {
-        this.fuelPriceHistories = data;
         this.fuelsPriceHistoryChangeEvent.emit(data);
       });
     }
   }
 
   public getLastPage() {
-    this.fuelPriceHistoryService.findAllWithPage(Math.floor(this.fuelPriceHistories.totalElements/10)).subscribe((data) => {
-      this.fuelPriceHistories = data;
+    this.fuelPriceHistoryService.findAllWithPage(Math.floor(this.fuelPriceHistories.totalElements / 10)).subscribe((data) => {
+      this.fuelsPriceHistoryChangeEvent.emit(data);
     });
   }
 }

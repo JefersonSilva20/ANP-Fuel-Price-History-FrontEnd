@@ -12,82 +12,82 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form">
+                <form>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Região</span>
                         </div>
-                        <input formControlName="region" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="region" [(ngModel)]="fuelPriceHistory.region.name" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
                         </div>
-                        <input  formControlName="state" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="state" [(ngModel)]="fuelPriceHistory.state.uf"  type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Município</span>
                         </div>
-                        <input  formControlName="county" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="county" [(ngModel)]="fuelPriceHistory.county.name" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Revendedora</span>
                         </div>
-                        <input  formControlName="reseller" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="resellerName" [(ngModel)]="fuelPriceHistory.reseller.name" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">CNPJ</span>
                         </div>
-                        <input  formControlName="cnpj" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="resellerCNPJ" [(ngModel)]="fuelPriceHistory.reseller.cnpj" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Produto</span>
                         </div>
-                        <input  formControlName="product" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="product" [(ngModel)]="fuelPriceHistory.product.name" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Data de Coleta</span>
                         </div>
-                        <input  formControlName="dateCollect" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="date" [(ngModel)]="fuelPriceHistory.date" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Compra</span>
                         </div>
-                        <input  formControlName="salePrice" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="purchasePrice" [(ngModel)]="fuelPriceHistory.purchasePrice" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Venda</span>
                         </div>
-                        <input formControlName="purchasePrice" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="salePrice" [(ngModel)]="fuelPriceHistory.salePrice" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Unidade de Medida</span>
                         </div>
-                        <input formControlName="measurementUnit" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="measurementUnit" [(ngModel)]="fuelPriceHistory.measurementUnit" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Bandeira</span>
                         </div>
-                        <input formControlName="banner" type="text" class="form-control" aria-label="Sizing example input"
+                        <input name="banner" [(ngModel)]="fuelPriceHistory.banner.name" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </form>

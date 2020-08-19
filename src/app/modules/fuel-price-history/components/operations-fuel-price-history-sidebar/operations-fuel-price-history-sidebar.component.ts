@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FuelPriceHistory } from 'src/app/models/fuel-price-history/fuel-price-history';
 import { Page } from 'src/app/models/pagination/page/page';
 import { CONTENT } from 'src/app/models/fuel-price-history/constants';
@@ -17,8 +17,10 @@ import { State } from 'src/app/models/state/state';
 })
 export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
 
-  public fuelPriceHistorySelected: FuelPriceHistory;
-  public fuelPriceHistories: Page<FuelPriceHistory>;
+  @Output()
+  public createFuelPriceHistoryEvent: EventEmitter<FuelPriceHistory>;
+  @Output()
+  public updateFuelsPricesHistoryEvent: EventEmitter<Page<FuelPriceHistory>>;
   public file: File;
   public avgPurchasePriceCountyName: string;
   public avgSalesPriceCountyName: string;
@@ -28,43 +30,22 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   public avgPurchaseAndSalesPriceByBannerName: string;
 
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
-    this.fuelPriceHistories = new Page<FuelPriceHistory>([]);
-    this.createNewFuelPrice();
+    this.updateFuelsPricesHistoryEvent = new EventEmitter();
+    this.createFuelPriceHistoryEvent = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.getFuekPriceHistories();
   }
 
   getFuekPriceHistories() {
     this.fuelPriceHistoryService.findAll().subscribe((data: Page<FuelPriceHistory>) => {
-      this.fuelPriceHistories = data;
+      this.updateFuelsPricesHistoryEvent.emit(data);
     })
   }
 
-  updateData(fuelPriceHistory: FuelPriceHistory) {
-    this.fuelPriceHistorySelected = fuelPriceHistory;
-  }
-
-  savedData(fuelPriceHistory: FuelPriceHistory) {
-    this.fuelPriceHistories.content[this.fuelPriceHistories.content.indexOf(this.fuelPriceHistorySelected)]=fuelPriceHistory;
-    this.fuelPriceHistorySelected = fuelPriceHistory;
-  }
-  addNewData(fuelPriceHistory: FuelPriceHistory){
-    this.fuelPriceHistories.content.push(fuelPriceHistory);
-  }
-
-  updateList(data: Page<FuelPriceHistory>){
-    this.fuelPriceHistories = data;
-  }
-
-  removeData(fuel: FuelPriceHistory){
-    this.fuelPriceHistories.content.splice(this.fuelPriceHistories.content.indexOf(fuel),1);
-  }
-
-
-  createNewFuelPrice() {
-    this.fuelPriceHistorySelected = new FuelPriceHistory(
+  /**Create New fuel price */
+  public createNewFuelPrice() {
+    this.createFuelPriceHistoryEvent.emit(new FuelPriceHistory(
       0,
       new Region(0, ''),
       new State(0, ''),
@@ -75,13 +56,14 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
       '',
       0,
       0,
-      '');
+      ''));
   }
 
   public selectFile(files: FileList) {
     this.file = files.item(0);
   }
 
+  /**Upload .CSV File */
   public uploadFile() {
     this.fuelPriceHistoryService.upload(this.file).subscribe(() => this.getFuekPriceHistories());
   }
@@ -123,20 +105,22 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   }
 
   public getFuelsPricesHistoriesByRegionName(region: string) {
+    console.log('cheguei');
     this.fuelPriceHistoryService.getFuelsPricesHistoriesByRegionName(region.toUpperCase()).subscribe((data: Page<FuelPriceHistory>) => {
-      this.fuelPriceHistories = data;
+      console.log(data);
+      this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }
 
-  public getFuelPriceHistoryByResellerName(reseller: string) {
+  public getFuelPriceHistoryByResellerName(reseller: string) {    
     this.fuelPriceHistoryService.getFuelPriceHistoryByResellerName(reseller.toUpperCase()).subscribe((data: Page<FuelPriceHistory>) => {
-      this.fuelPriceHistories = data;
+      this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }
 
   public getFuelPriceHistoryByDate(date: Date) {
     this.fuelPriceHistoryService.getFuelPriceHistoryByDate(date).subscribe((data: Page<FuelPriceHistory>) => {
-      this.fuelPriceHistories = data;
+      this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }
 
