@@ -1,0 +1,22 @@
+<img class="logo img-fluid" src="../../assets/anp.svg" alt="" srcset="">
+<div class="login d-flex flex-column justify-content-center ">
+    <div class="login-body d-flex justify-content-center">
+        <form [formGroup]="form" class="login-form d-flex flex-column justify-content-center">
+            <h1 class="login-text">Login</h1>
+            <input formControlName="username" placeholder="Email" type="email">
+            <!--<span *ngIf="form.get('username').hasError('email')" class="error-text">Email precisa ser válido.</span>-->
+            <input formControlName="password" placeholder="Senha" type="password">
+            <!--<span *ngIf="form.get('password').hasError('minlength')" class="error-text">Senha precisa ter no mínimo 8 caracteres</span>-->
+            <button [disabled]="!form.valid" (click)="login()" type="button"
+                class="login-button btn btn-lg btn-primary">Entrar
+            </button>
+            <span *ngIf="!validLogin" class="error-text">Email ou senha inválido(s).</span>
+            <a class="d-flex align-items-center" [routerLink]="['/cadastro']">
+                Não possuo cadastro
+                <span class="material-icons">
+                    arrow_forward
+                </span>
+            </a>
+        </form>
+    </div>
+</div>

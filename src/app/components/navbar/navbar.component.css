@@ -1,0 +1,12 @@
+nav{
+    /*background-color: rgba(7,95,22,1);*/
+    background-color: #00609b;
+    width: 100%;
+}
+.logo{
+    margin-right: 8px;
+    border-radius: 8px;
+}
+button{
+    margin-left: 8px;
+}

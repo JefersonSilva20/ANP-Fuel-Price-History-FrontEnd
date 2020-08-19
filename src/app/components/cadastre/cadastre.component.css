@@ -1,0 +1,26 @@
+.cadastre {
+    width   : 100%;
+    height  : 100vh;
+    overflow: hidden;
+}
+.cadastre-body .cadastre-form{
+    width: 40%;
+}
+
+.cadastre-body .cadastre-form h1 {
+    font-weight: bold;
+}
+
+.cadastre-body .cadastre-form a {
+    font-weight: bold;
+    width: fit-content;
+}
+
+.cadastre-body .cadastre-form a fa-icon {
+    font-size: medium;
+}
+
+.logo-anp img {
+    width: 20%;
+    margin: 16px;
+}

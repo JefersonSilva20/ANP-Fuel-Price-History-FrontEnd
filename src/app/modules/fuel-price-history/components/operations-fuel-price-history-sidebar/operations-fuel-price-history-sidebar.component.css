@@ -1,0 +1,22 @@
+.sidebar{
+    padding-top: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    max-width: 400px;
+    min-width: 400px;
+    padding-bottom: 0;
+    background-color: #e3f2fd;
+    margin-right: 8px;
+    border-radius: 16px;
+    height: auto;
+}
+h2{
+    text-align: center;
+}
+
+span{
+    margin-top: 8px;
+}
+span.input-text{
+    width: 100%;
+}

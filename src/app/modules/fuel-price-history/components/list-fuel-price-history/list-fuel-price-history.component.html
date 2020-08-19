@@ -1,0 +1,62 @@
+<div class="list">
+    <table class="table table-sm ">
+        <thead class="thead-darkest">
+            <tr>
+                <th scope="col">Região</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Município</th>
+                <th scope="col">Revendedora</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Data de Coleta</th>
+                <th scope="col">Preço venda</th>
+                <th scope="col">Preço Compra</th>
+                <th scope="col">Unidade de Medida</th>
+                <th scope="col">Bandeira</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr (click)="selectItem(collect)" *ngFor="let collect of fuelPriceHistories.content" data-toggle="modal" data-target="#staticBackdrop">
+                <td>{{ collect.region.name }}</td>
+                <td>{{ collect.state.uf }}</td>
+                <td>{{ collect.county.name | truncate}}</td>
+                <td>{{ collect.reseller.name | truncate }}</td>
+                <td>{{ collect.reseller.cnpj }}</td>
+                <td>{{ collect.product.name }}</td>
+                <td>{{ collect.date }}</td>
+                <td>{{ collect.salePrice }}</td>
+                <td>{{ collect.purchasePrice }}</td>
+                <td>{{ collect.measurementUnit}}</td>
+                <td>{{ collect.banner.name | truncate}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="display: none;" *ngIf=loading class="loader"></div>
+</div>
+<div class="paginator">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <p>Página {{fuelPriceHistories.number+1}} de {{fuelPriceHistories.totalPages}}</p>
+        </li>
+        <li (click)=" getFirstPage()" class="page-item">
+            <a class="page-link" data-toggle="tooltip" title="Primeira Página">
+                <i class="material-icons">
+                    first_page
+                </i>
+            </a>
+        </li>
+        <li (click)="getPreviousPage()" class="page-item">
+            <a class="page-link">Anterior</a>
+        </li>
+        <li (click)="getNextPage()" class="page-item">
+            <a class="page-link">Próximo</a>
+        </li>
+        <li (click)=" getLastPage()">
+            <a style="border-radius: 0 0 16px 0;" class="page-link" data-toggle="tooltip" title="Última Página">
+                <i class="material-icons">
+                    last_page
+                </i>
+            </a>
+        </li>
+    </ul>
+</div>

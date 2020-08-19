@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from 'src/app/models/user/user';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  private readonly USERS_API = 'http://localhost:8080/users';
+
+  constructor(private httpClient: HttpClient) { }
+
+  public getUserByUsername(username: string) {
+    let user: User = new User();
+    let authToken = localStorage.getItem('Authorization');
+    this.httpClient.get('http://localhost:8080/users/search?username='+username,
+      { headers: new HttpHeaders().append('Authorization', authToken) }).subscribe(
+        (data: any) => {
+          user.id = data.content[0].id;
+          user.name = data.content[0].name;
+          user.username = data.content[0].username;
+        },
+        (error) => {
+          console.log(error);
+        });
+    console.log(user);
+    return user;
+  }
+}

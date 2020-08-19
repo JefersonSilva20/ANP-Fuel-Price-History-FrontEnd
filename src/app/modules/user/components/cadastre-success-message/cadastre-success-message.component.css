@@ -1,0 +1,10 @@
+article{
+    height: 100vh;
+    justify-items: center;
+}
+
+section{
+    height: 256px;
+    width: 600px;
+    border-radius: 16px;
+}

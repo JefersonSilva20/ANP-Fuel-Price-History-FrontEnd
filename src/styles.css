@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Crimson Text', serif;
+
+}
+body {
+    background-size: 100%;
+    background-image:
+    linear-gradient(to bottom, rgba(158, 275, 251, 0.52), rgba(166, 157, 252, 0.73)),
+    url('/assets/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+button{
+    margin: 8px 0 0 0;
+}
+input{
+    border-style: none;
+    margin: 8px 0 0 0;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+a{
+    padding: 8px;
+    font-size: 24px;
+    color:black;
+
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+.error-text{
+    color:brown;
+    margin: 8px 0 0 0;
+    font-weight: bold;
+}
+
+@media (max-width: 767.98px){
+    body{
+        background-size: cover;
+    }
+}
