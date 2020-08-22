@@ -1,19 +1,24 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FuelPriceHistory } from 'src/app/models/fuel-price-history/fuel-price-history';
 import { Page } from 'src/app/models/pagination/page/page';
-import { CONTENT } from 'src/app/models/fuel-price-history/constants';
 import { FuelPriceHistoryService } from '../../services/fuel-price-history.service';
-import { Banner } from 'src/app/models/banner/banner';
-import { County } from 'src/app/models/county/county';
-import { Product } from 'src/app/models/product/product';
-import { Region } from 'src/app/models/region/region';
-import { Reseller } from 'src/app/models/reseller/reseller';
-import { State } from 'src/app/models/state/state';
 
 @Component({
   selector: 'app-operations-fuel-price-history-sidebar',
   templateUrl: './operations-fuel-price-history-sidebar.component.html',
-  styleUrls: ['./operations-fuel-price-history-sidebar.component.css']
+  styleUrls: ['./operations-fuel-price-history-sidebar.component.css'],
+  animations: [
+    trigger(
+      'hidden',
+      [
+        state('hide',style({position:'absolute',transform: 'translateX(-120%)'})),
+        state('show',style({position:'absolute',transform: 'translateX(0)'})),
+        transition('hide => show',[animate('500ms ease-out')]),
+        transition('show => hide',[animate('500ms ease-in')]),
+      ]
+    )
+  ]
 })
 export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
 
@@ -28,6 +33,8 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   public avgPurchasePriceBannerName: string;
   public avgSalesPriceBannerName: string;
   public avgPurchaseAndSalesPriceByBannerName: string;
+  @Input()
+  public showMenu: boolean;
 
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.updateFuelsPricesHistoryEvent = new EventEmitter();
@@ -37,35 +44,16 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getFuekPriceHistories() {
+  public refreshList(s: string){
+    if(!s){
+      this.getFuelPriceHistories();
+    }
+  }
+
+  getFuelPriceHistories() {
     this.fuelPriceHistoryService.findAll().subscribe((data: Page<FuelPriceHistory>) => {
       this.updateFuelsPricesHistoryEvent.emit(data);
     })
-  }
-
-  /**Create New fuel price */
-  public createNewFuelPrice() {
-    this.createFuelPriceHistoryEvent.emit(new FuelPriceHistory(
-      0,
-      new Region(0, ''),
-      new State(0, ''),
-      new County(0, ''),
-      new Reseller(0, '', ''),
-      new Product(0, ''),
-      new Banner(0, ''),
-      '',
-      0,
-      0,
-      ''));
-  }
-
-  public selectFile(files: FileList) {
-    this.file = files.item(0);
-  }
-
-  /**Upload .CSV File */
-  public uploadFile() {
-    this.fuelPriceHistoryService.upload(this.file).subscribe(() => this.getFuekPriceHistories());
   }
 
   public findAvgPurchasePriceCountyName(county: string) {
@@ -105,14 +93,13 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   }
 
   public getFuelsPricesHistoriesByRegionName(region: string) {
-    console.log('cheguei');
     this.fuelPriceHistoryService.getFuelsPricesHistoriesByRegionName(region.toUpperCase()).subscribe((data: Page<FuelPriceHistory>) => {
       console.log(data);
       this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }
 
-  public getFuelPriceHistoryByResellerName(reseller: string) {    
+  public getFuelPriceHistoryByResellerName(reseller: string) {
     this.fuelPriceHistoryService.getFuelPriceHistoryByResellerName(reseller.toUpperCase()).subscribe((data: Page<FuelPriceHistory>) => {
       this.updateFuelsPricesHistoryEvent.emit(data);
     });

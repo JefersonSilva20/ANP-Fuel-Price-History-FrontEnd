@@ -1,7 +1,7 @@
 .paginator {
     width           : 100%;
     background-color: #e3f2fd;
-    border-radius   : 0 0 16px 16px;
+    border-radius   : 0 0 8px 8px;
     border-top      : 1px solid #D3D3D3;
 }
 
@@ -10,10 +10,10 @@
 }
 
 table {
-    border-radius: 16px 16px 0 0;
-    overflow     : hidden;
+    border-radius: 8px 8px 0 0;
     margin-bottom: 0;
-    width        : 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 th {
@@ -25,6 +25,8 @@ th {
 
 tbody tr {
     cursor: pointer;
+    border-left: 0;
+    border-right: 0;
 }
 
 td {

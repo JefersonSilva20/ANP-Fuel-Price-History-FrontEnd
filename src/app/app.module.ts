@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FuelPriceHistoryModule } from './modules/fuel-price-history/fuel-price-history.module';
 import { CadastreSuccessMessageComponent } from './modules/user/components/cadastre-success-message/cadastre-success-message.component';
 import { UserModule } from './modules/user/user.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { UserModule } from './modules/user/user.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     UserModule,
     FuelPriceHistoryModule,

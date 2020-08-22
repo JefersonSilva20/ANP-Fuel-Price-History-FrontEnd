@@ -2,21 +2,16 @@
     padding-top: 16px;
     padding-left: 8px;
     padding-right: 8px;
-    max-width: 400px;
-    min-width: 400px;
     padding-bottom: 8px;
     background-color: #e3f2fd;
-    margin-right: 8px;
-    border-radius: 16px;
-    height: auto;
-}
-h2{
-    text-align: center;
+    width: auto;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    z-index: 3;
 }
 
-span{
-    margin-top: 8px;
-}
-span.input-text{
-    width: 100%;
+h4{
+    text-align: center;
 }

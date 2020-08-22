@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FuelPriceHistory } from 'src/app/models/fuel-price-history/fuel-price-history';
 import { FuelPriceHistoryService } from '../../services/fuel-price-history.service';
 
@@ -30,6 +30,10 @@ export class EditFuelPriceHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  toUpperCase(s:String){
+    return s.toUpperCase;
+  }
 
   public saveData() {
     this.fuelPriceHistoryService.save(this.fuelPriceHistory).subscribe(

@@ -18,10 +18,16 @@ export class HomeComponent implements OnInit {
   
   public fuelPriceHistorySelected: FuelPriceHistory;
   public fuelPriceHistories: Page<FuelPriceHistory>;
+  public menuIsShow:boolean;
 
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.fuelPriceHistories = new Page<FuelPriceHistory>([]);
     this.createNewFuelPrice();
+    this.menuIsShow = true;
+  }
+
+  showMenu(showMenu: boolean){
+    this.menuIsShow = showMenu;
   }
 
   createNewFuelPrice() {
