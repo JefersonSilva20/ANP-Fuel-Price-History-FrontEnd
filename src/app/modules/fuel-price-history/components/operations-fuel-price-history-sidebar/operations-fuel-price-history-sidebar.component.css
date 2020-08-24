@@ -1,12 +1,35 @@
+.operations-content{
+    width: 100%; 
+    background-color: #e3f2fd; 
+    padding: 8px 16px; 
+    border-radius: 8px;
+}
+
+h4{
+    margin-right: 8px;
+}
+span{
+    margin-bottom: 16px; 
+    width: 100%;
+}
+
+button{
+    margin-top: 0;
+    margin-bottom: 16px;
+    margin-right:8px;
+}
+
+#inputGroupFile04{
+    cursor: pointer;
+}
+
 .sidebar{
-    padding-top: 16px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 8px;
+    padding: 16px;
     background-color: #e3f2fd;
     width: auto;
     border-radius: 8px;
-    display: flex;
+    display: absolute;
+    left: -120px;
     justify-content: flex-start;
     flex-direction: column;
     z-index: 3;

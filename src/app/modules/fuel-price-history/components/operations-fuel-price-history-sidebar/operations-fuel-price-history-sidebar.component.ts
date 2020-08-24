@@ -3,6 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FuelPriceHistory } from 'src/app/models/fuel-price-history/fuel-price-history';
 import { Page } from 'src/app/models/pagination/page/page';
 import { FuelPriceHistoryService } from '../../services/fuel-price-history.service';
+import { Region } from 'src/app/models/region/region';
+import { State } from 'src/app/models/state/state';
+import { County } from 'src/app/models/county/county';
+import { Reseller } from 'src/app/models/reseller/reseller';
+import { Product } from 'src/app/models/product/product';
+import { Banner } from 'src/app/models/banner/banner';
 
 @Component({
   selector: 'app-operations-fuel-price-history-sidebar',
@@ -12,8 +18,8 @@ import { FuelPriceHistoryService } from '../../services/fuel-price-history.servi
     trigger(
       'hidden',
       [
-        state('hide',style({position:'absolute',transform: 'translateX(-120%)'})),
-        state('show',style({position:'absolute',transform: 'translateX(0)'})),
+        state('hide',style({overflow: 'hidden','overflow-y':'hidden',height:0,'padding-bottom':0,'padding-top':0})),
+        state('show',style({overflow: 'auto', 'overflow-y':'hidden',height:'350px','padding-top':'8px','padding-bottom':'8px','margin-bottom':'8px'})),
         transition('hide => show',[animate('500ms ease-out')]),
         transition('show => hide',[animate('500ms ease-in')]),
       ]
@@ -44,9 +50,35 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public selectFile(files: FileList) {
+    this.file = files.item(0);
+  }
+
+  /**Upload .CSV File */
+  public uploadFile() {
+    this.fuelPriceHistoryService.upload(this.file).subscribe(() => this.getFuelPriceHistories());
+  }
+
+  /**Create New fuel price */
+  public createNewFuelPrice() {
+    this.createFuelPriceHistoryEvent.emit(new FuelPriceHistory(
+      0,
+      new Region(0, ''),
+      new State(0, ''),
+      new County(0, ''),
+      new Reseller(0, '', ''),
+      new Product(0, ''),
+      new Banner(0, ''),
+      'dd/MM/aaaa',
+      0,
+      0,
+      'R$ / litro'));
+  }
+
   public refreshList(s: string){
     if(!s){
       this.getFuelPriceHistories();
+      this.fuelPriceHistoryService.resetCurrentApiUrl()
     }
   }
 

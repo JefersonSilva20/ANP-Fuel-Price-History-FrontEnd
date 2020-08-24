@@ -1,10 +1,10 @@
 <app-navbar (showMenuEvent)=showMenu($event) [menuIsShow]=menuIsShow></app-navbar>
-<div style="padding: 8px;">
-    <div class="d-flex flex-row">
+<div class="home-content content">
+    <div class="d-flex flex-column">
         <app-operations-fuel-price-history-sidebar [showMenu]=menuIsShow
             (createFuelPriceHistoryEvent)=updateFuelPriceSelect($event)
             (updateFuelsPricesHistoryEvent)=updateFuelsPrices($event)></app-operations-fuel-price-history-sidebar>
-        <app-list-fuel-price-history style="width: 100%;" (fuelsPriceHistoryChangeEvent)=updateFuelsPrices($event)
+        <app-list-fuel-price-history (fuelsPriceHistoryChangeEvent)=updateFuelsPrices($event)
             (fuelPriceHistorySelectEvent)=updateFuelPriceSelect($event) [fuelPriceHistories]=fuelPriceHistories
             [fuelPriceHistorySelect]=fuelPriceHistorySelected></app-list-fuel-price-history>
     </div>

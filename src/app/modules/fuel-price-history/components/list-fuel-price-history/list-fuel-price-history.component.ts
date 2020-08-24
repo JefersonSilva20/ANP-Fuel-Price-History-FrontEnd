@@ -8,6 +8,7 @@ import { Region } from 'src/app/models/region/region';
 import { Reseller } from 'src/app/models/reseller/reseller';
 import { State } from 'src/app/models/state/state';
 import { FuelPriceHistoryService } from '../../services/fuel-price-history.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-list-fuel-price-history',
@@ -29,10 +30,7 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   public fuelsPriceHistoryChangeEvent: EventEmitter<Page<FuelPriceHistory>>;
 
   public loading: boolean = true;
-
-  public file: File;
-
-
+  
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.fuelPriceHistorySelectEvent = new EventEmitter();
     this.fuelsPriceHistoryChangeEvent = new EventEmitter();
@@ -41,36 +39,7 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getFuelPriceHistories() {
-    this.fuelPriceHistoryService.findAll().subscribe((data: Page<FuelPriceHistory>) => {
-      this.fuelsPriceHistoryChangeEvent.emit(data);
-    })
-  }
-
-  public selectFile(files: FileList) {
-    this.file = files.item(0);
-  }
-
-  /**Upload .CSV File */
-  public uploadFile() {
-    this.fuelPriceHistoryService.upload(this.file).subscribe(() => this.getFuelPriceHistories());
-  }
-
-  /**Create New fuel price */
-  public createNewFuelPrice() {
-    this.fuelPriceHistorySelectEvent.emit(new FuelPriceHistory(
-      0,
-      new Region(0, ''),
-      new State(0, ''),
-      new County(0, ''),
-      new Reseller(0, '', ''),
-      new Product(0, ''),
-      new Banner(0, ''),
-      'dd/MM/aaaa',
-      0,
-      0,
-      'R$ / litro'));
-  }
+  
 
   selectItem(fuelPriceHistory: FuelPriceHistory) {
     this.fuelPriceHistorySelectEvent.emit(fuelPriceHistory);

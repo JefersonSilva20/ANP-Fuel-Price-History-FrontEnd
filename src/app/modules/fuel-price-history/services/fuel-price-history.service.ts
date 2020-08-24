@@ -15,6 +15,7 @@ export class FuelPriceHistoryService {
   private currentApiUrl: string;
   private apifilePath: string;
   private pagePath: string;
+  private currentPath: string;
   private authHeader: HttpHeaders;
 
   constructor(private http: HttpClient) {
@@ -24,6 +25,11 @@ export class FuelPriceHistoryService {
     this.pagePath = '?page=';
     this.authHeader = new HttpHeaders().set('Authorization', localStorage.getItem('Authorization'));
 
+  }
+
+  public resetCurrentApiUrl(){
+    this.currentApiUrl = this.apiUrl;
+    this.pagePath = '?page=';
   }
 
   public findAll(): Observable<Page<FuelPriceHistory>> {

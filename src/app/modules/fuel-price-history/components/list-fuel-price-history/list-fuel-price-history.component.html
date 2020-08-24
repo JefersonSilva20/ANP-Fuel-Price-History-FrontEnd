@@ -1,81 +1,61 @@
 <div class="list">
-    <div style="width: 100%; background-color: #e3f2fd; padding: 8px 16px; border-radius: 8px;">
-        <h4 style="text-align: center;">Adicionar Preços</h4>
-        <div class="d-flex">
-            <div class="input-group mb-3">
-                <div class="custom-file">
-                    <input style="cursor: pointer;" (change)="selectFile($event.target.files)" type="file" accept=".csv"
-                        class="custom-file-input" id="inputGroupFile04">
-                    <label class="custom-file-label" for="inputGroupFile04">Arquivo .cvs</label>
-                </div>
-                <div class="input-group-append">
-                    <button (click)="uploadFile()" style="margin: 0;" class="btn btn-outline-secondary"
-                        type="button">Adicionar</button>
-                </div>
-            </div>
-            <div style="width: 100%; margin-left: 8px;" class="d-flex">
-                <span style="margin-bottom: 16px; width: 100%;" class="input-group-text input-text">Adicionar um
-                    Preço</span>
-                <button style="margin-top: 0;margin-bottom: 16px;" (click)="createNewFuelPrice()" type="button"
-                    class="btn btn-outline-secondary" data-toggle="modal" data-target="#staticBackdrop">
-                    Adicionar</button>
-            </div>
+    <div>
+        <table class="table">
+            <thead class="thead-darkest">
+                <tr>
+                    <th scope="col">Região</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Município</th>
+                    <th scope="col">Revendedora</th>
+                    <th scope="col">Data de Coleta</th>
+                    <th scope="col">Preço Compra</th>
+                    <th scope="col">Preço Venda</th>
+                    <th scope="col">Bandeira</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (click)="selectItem(collect)" *ngFor="let collect of fuelPriceHistories.content" data-toggle="modal"
+                    data-target="#staticBackdrop">
+                    <td>{{ collect.region.name }}</td>
+                    <td>{{ collect.state.uf }}</td>
+                    <td>{{ collect.county.name}}</td>
+                    <td>{{ collect.reseller.name }}</td>
+                    <td>{{ collect.date }}</td>
+                    <td>{{ collect.purchasePrice }}</td>
+                    <td>{{ collect.salePrice }}</td>
+                    <td>{{ collect.banner.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="paginator">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <p>Página {{fuelPriceHistories.number+1}} de {{fuelPriceHistories.totalPages}}</p>
+                </li>
+                <li (click)=" getFirstPage()" class="page-item">
+                    <a class="page-link" data-toggle="tooltip" title="Primeira Página">
+                        <i class="material-icons">
+                            first_page
+                        </i>
+                    </a>
+                </li>
+                <li (click)="getPreviousPage()" class="page-item">
+                    <a class="page-link">Anterior</a>
+                </li>
+                <li (click)="getNextPage()" class="page-item">
+                    <a class="page-link">Próximo</a>
+                </li>
+                <li (click)=" getLastPage()">
+                    <a style="border-radius: 0 0 8px 0;" class="page-link" data-toggle="tooltip" title="Última Página">
+                        <i class="material-icons">
+                            last_page
+                        </i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-    <table class="table">
-        <thead class="thead-darkest">
-            <tr>
-                <th scope="col">Região</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Município</th>
-                <th scope="col">Revendedora</th>
-                <th scope="col">Data de Coleta</th>
-                <th scope="col">Preço Compra</th>
-                <th scope="col">Preço Venda</th>
-                <th scope="col">Bandeira</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr (click)="selectItem(collect)" *ngFor="let collect of fuelPriceHistories.content" data-toggle="modal"
-                data-target="#staticBackdrop">
-                <td>{{ collect.region.name }}</td>
-                <td>{{ collect.state.uf }}</td>
-                <td>{{ collect.county.name}}</td>
-                <td>{{ collect.reseller.name }}</td>
-                <td>{{ collect.date }}</td>
-                <td>{{ collect.purchasePrice }}</td>
-                <td>{{ collect.salePrice }}</td>
-                <td>{{ collect.banner.name }}</td>
-            </tr>
-        </tbody>
-    </table>
     <div style="display: none;" *ngIf=loading class="loader"></div>
-    <div class="paginator">
-        <ul class="pagination justify-content-end">
-            <li class="page-item">
-                <p>Página {{fuelPriceHistories.number+1}} de {{fuelPriceHistories.totalPages}}</p>
-            </li>
-            <li (click)=" getFirstPage()" class="page-item">
-                <a class="page-link" data-toggle="tooltip" title="Primeira Página">
-                    <i class="material-icons">
-                        first_page
-                    </i>
-                </a>
-            </li>
-            <li (click)="getPreviousPage()" class="page-item">
-                <a class="page-link">Anterior</a>
-            </li>
-            <li (click)="getNextPage()" class="page-item">
-                <a class="page-link">Próximo</a>
-            </li>
-            <li (click)=" getLastPage()">
-                <a style="border-radius: 0 0 8px 0;" class="page-link" data-toggle="tooltip" title="Última Página">
-                    <i class="material-icons">
-                        last_page
-                    </i>
-                </a>
-            </li>
-        </ul>
-    </div>
+    
 
 </div>
