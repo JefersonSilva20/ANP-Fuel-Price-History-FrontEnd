@@ -12,7 +12,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   public getUserByUsername(username: string) {
-    let user: User = new User();
+    let user: User = new User(0,'','','',[]);
     let authToken = localStorage.getItem('Authorization');
     this.httpClient.get('http://localhost:8080/users/search?username='+username,
       { headers: new HttpHeaders().append('Authorization', authToken) }).subscribe(
@@ -24,7 +24,6 @@ export class UserService {
         (error) => {
           console.log(error);
         });
-    console.log(user);
     return user;
   }
 }

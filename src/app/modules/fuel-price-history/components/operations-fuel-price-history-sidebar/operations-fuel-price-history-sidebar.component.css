@@ -5,6 +5,14 @@
     border-radius: 8px;
 }
 
+.create-price{
+    width: 100%;
+}
+
+.average-operations-content{
+    width: 100%;
+}
+
 h4{
     margin-right: 8px;
 }

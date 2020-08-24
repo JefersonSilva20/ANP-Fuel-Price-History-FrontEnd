@@ -126,7 +126,6 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
 
   public getFuelsPricesHistoriesByRegionName(region: string) {
     this.fuelPriceHistoryService.getFuelsPricesHistoriesByRegionName(region.toUpperCase()).subscribe((data: Page<FuelPriceHistory>) => {
-      console.log(data);
       this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }

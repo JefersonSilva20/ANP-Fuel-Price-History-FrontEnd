@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit {
   }
 
   updateFuelsPrices(data: Page<FuelPriceHistory>){
-    console.log('cheguei');
     this.fuelPriceHistories = data;
   }
 
