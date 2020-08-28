@@ -123,8 +123,6 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   }
 
   public findAvgSalesPriceBannerName(banner: string) {
-    console.log(banner);
-
     this.fuelPriceHistoryService.findAvgSalesPriceBannerName(banner.toUpperCase()).subscribe((avg: number) => {
       this.avgSalesPriceBannerName = avg.toFixed(2);
     });

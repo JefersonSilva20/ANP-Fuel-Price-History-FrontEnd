@@ -47,9 +47,7 @@ export class HomeComponent implements OnInit {
       '');
   }
 
-  public loaderDisplayStatus(displayStatus:string){
-    console.log(displayStatus);
-    
+  public loaderDisplayStatus(displayStatus:string){    
     this.loaderDisplay =displayStatus;
   }
 

@@ -41,7 +41,6 @@ export class ListFuelPriceHistoryComponent implements OnInit {
 
   public selectItem(fuelPriceHistory: FuelPriceHistory) {
     this.fuelPriceHistorySelectEvent.emit(fuelPriceHistory);
-    console.log(`Selected:   ${JSON.stringify(fuelPriceHistory)}`);
   }
 
   public getFirstPage() {
@@ -54,7 +53,9 @@ export class ListFuelPriceHistoryComponent implements OnInit {
 
   public getNextPage() {
     if (!this.fuelPriceHistories.last) {
-      this.fuelPriceHistoryService.getNextPage(++this.fuelPriceHistories.number).subscribe((data) => {
+      let pageNumber = this.fuelPriceHistories.number;
+      this.fuelPriceHistoryService.getNextPage(++pageNumber).subscribe((data) => {
+        ++this.fuelPriceHistories.number;
         this.fuelsPriceHistoryChangeEvent.emit(data);
       });
     }
@@ -62,7 +63,9 @@ export class ListFuelPriceHistoryComponent implements OnInit {
 
   public getPreviousPage() {
     if (!this.fuelPriceHistories.first) {
-      this.fuelPriceHistoryService.getNextPage(--this.fuelPriceHistories.number).subscribe((data) => {
+      let pageNumber = this.fuelPriceHistories.number;
+      this.fuelPriceHistoryService.getNextPage(--pageNumber).subscribe((data) => {
+        --this.fuelPriceHistories.number;
         this.fuelsPriceHistoryChangeEvent.emit(data);
       });
     }
