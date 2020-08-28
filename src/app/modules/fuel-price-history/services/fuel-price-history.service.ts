@@ -15,7 +15,6 @@ export class FuelPriceHistoryService {
   private currentApiUrl: string;
   private apifilePath: string;
   private pagePath: string;
-  private currentPath: string;
   private authHeader: HttpHeaders;
 
   constructor(private http: HttpClient) {
@@ -38,7 +37,7 @@ export class FuelPriceHistoryService {
     });
   }
 
-  findAllWithPage(pageNumber: number) {
+  public getNextPage(pageNumber: number) {
     return this.http.get<Page<FuelPriceHistory>>(`${this.currentApiUrl}${this.pagePath}${pageNumber}`, {
       headers: this.authHeader
     });
@@ -123,8 +122,8 @@ export class FuelPriceHistoryService {
     })
   }
 
-  getFuelPriceHistoryByDate(date: Date) {
-    this.currentApiUrl = `${this.apiUrl}/search/date?date=${date}`;
+  getFuelPriceHistoryByDate(registreDate: Date) {
+    this.currentApiUrl = `${this.apiUrl}/search/date?date=${registreDate}`;
     this.pagePath = '&page=';
     return this.http.get<Page<FuelPriceHistory>>(this.currentApiUrl, {
       headers: this.authHeader

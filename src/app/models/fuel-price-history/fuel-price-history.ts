@@ -14,7 +14,7 @@ export class FuelPriceHistory {
         public reseller: Reseller,
         public product: Product,
         public banner: Banner,
-        public date:string,
+        public registreDate:string,
         public purchasePrice: number,
         public salePrice: number,
         public measurementUnit: string) {

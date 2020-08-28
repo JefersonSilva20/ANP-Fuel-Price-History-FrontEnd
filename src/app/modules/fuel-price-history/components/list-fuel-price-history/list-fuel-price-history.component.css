@@ -1,22 +1,27 @@
-.operations-content{
-    width: 100%; 
-    background-color: #e3f2fd; 
-    padding: 8px 16px; 
-    border-radius: 8px;
-}
-
-h4{
-    margin-right: 8px;
-}
-span{
-    margin-bottom: 16px; 
+.list {
     width: 100%;
 }
 
-button{
-    margin-top: 0;
+.operations-content {
+    width           : 100%;
+    background-color: #e3f2fd;
+    padding         : 8px 16px;
+    border-radius   : 8px;
+}
+
+h4 {
+    margin-right: 8px;
+}
+
+span {
     margin-bottom: 16px;
-    margin-right:8px;
+    width        : 100%;
+}
+
+button {
+    margin-top   : 0;
+    margin-bottom: 16px;
+    margin-right : 8px;
 }
 
 .paginator {
@@ -33,7 +38,8 @@ button{
 table {
     border-radius: 8px 8px 0 0;
     margin-bottom: 0;
-    overflow: hidden;
+    overflow     : hidden;
+    width        : 100% !important;
 }
 
 th {
@@ -44,8 +50,8 @@ th {
 }
 
 tbody tr {
-    cursor: pointer;
-    border-left: 0;
+    cursor      : pointer;
+    border-left : 0;
     border-right: 0;
 }
 
@@ -87,9 +93,9 @@ p {
 .loader {
     border           : 16px solid #e3f2fd;
     border-radius    : 50%;
-    position         : absolute;
-    left             : 60%;
-    top              : 50%;
+    position         : relative;
+    left             : 45%;
+    top              : 20%;
     border-top       : 16px solid #3498db;
     width            : 120px;
     height           : 120px;

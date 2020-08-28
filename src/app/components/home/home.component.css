@@ -1,4 +1,9 @@
-.home-content{
-    height: 100%;
-    paddding: 8px;
+.operations{
+    padding: 8px;
+    display: flex;
+    max-height: 100vh;
+}
+
+app-list-fuel-price-history{
+    width: 100%;
 }

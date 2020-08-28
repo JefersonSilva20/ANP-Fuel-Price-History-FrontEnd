@@ -19,18 +19,20 @@ export class HomeComponent implements OnInit {
   public fuelPriceHistorySelected: FuelPriceHistory;
   public fuelPriceHistories: Page<FuelPriceHistory>;
   public menuIsShow:boolean;
+  public loaderDisplay: string;
 
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.fuelPriceHistories = new Page<FuelPriceHistory>([]);
     this.createNewFuelPrice();
     this.menuIsShow = true;
+    this.loaderDisplay = 'none';
   }
 
-  showMenu(showMenu: boolean){
+  public showMenu(showMenu: boolean){
     this.menuIsShow = showMenu;
   }
 
-  createNewFuelPrice() {
+  public createNewFuelPrice() {
     this.fuelPriceHistorySelected = new FuelPriceHistory(
       0,
       new Region(0, ''),
@@ -45,37 +47,41 @@ export class HomeComponent implements OnInit {
       '');
   }
 
+  public loaderDisplayStatus(displayStatus:string){
+    console.log(displayStatus);
+    
+    this.loaderDisplay =displayStatus;
+  }
+
   ngOnInit(): void {
-    this.getFuekPriceHistories();
+    this.getFuelPriceHistories();
   }
 
   
-  getFuekPriceHistories() {
+  public getFuelPriceHistories() {
     this.fuelPriceHistoryService.findAll().subscribe((data: Page<FuelPriceHistory>) => {
       this.fuelPriceHistories = data;
     })
   }
 
-  updateFuelsPrices(data: Page<FuelPriceHistory>){
+  public updateFuelsPrices(data: Page<FuelPriceHistory>){
     this.fuelPriceHistories = data;
   }
 
-  updateFuelPriceSelect(fuelPriceHistory: FuelPriceHistory) {
+  public updateFuelPriceSelect(fuelPriceHistory: FuelPriceHistory) {
     this.fuelPriceHistorySelected = fuelPriceHistory;
   }
 
-  updateFuelPrice(fuelPriceHistory: FuelPriceHistory) {
+  public updateFuelPrice(fuelPriceHistory: FuelPriceHistory) {
     this.fuelPriceHistories.content[this.fuelPriceHistories.content.indexOf(this.fuelPriceHistorySelected)]=fuelPriceHistory;
     this.fuelPriceHistorySelected = fuelPriceHistory;
   }
 
-  addFuelPrice(fuelPriceHistory: FuelPriceHistory){
+  public addFuelPrice(fuelPriceHistory: FuelPriceHistory){
     this.fuelPriceHistories.content.push(fuelPriceHistory);
   }
 
-  removeFuelPrice(fuel: FuelPriceHistory){
+  public removeFuelPrice(fuel: FuelPriceHistory){
     this.fuelPriceHistories.content.splice(this.fuelPriceHistories.content.indexOf(fuel),1);
   }
-
-
 }

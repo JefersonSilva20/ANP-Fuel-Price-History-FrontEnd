@@ -17,9 +17,11 @@ export class Page<T> {
     this.pageable = new Pageable();
     this.content = content;
     this.totalElements = content.length;
-    this.numberOfElements = 10;
-    this.size = 10;
+    this.numberOfElements = 20;
+    this.size = 20;
     this.number = 0;
+    this.last = true;
+    this.first = true;
     this.totalPages = Math.round(this.totalElements/this.size);
   }
 }

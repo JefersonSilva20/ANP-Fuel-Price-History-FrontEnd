@@ -18,10 +18,10 @@ import { Banner } from 'src/app/models/banner/banner';
     trigger(
       'hidden',
       [
-        state('hide',style({overflow: 'hidden','overflow-y':'hidden',height:0,'padding-bottom':0,'padding-top':0})),
-        state('show',style({overflow: 'auto', 'overflow-y':'hidden',height:'350px','padding-top':'8px','padding-bottom':'8px','margin-bottom':'8px'})),
-        transition('hide => show',[animate('500ms ease-out')]),
-        transition('show => hide',[animate('500ms ease-in')]),
+        state('hide', style({ overflow: 'hidden', width: 0, margin: 0, padding: '8px 0', 'margin-right': 0 })),
+        state('show', style({ width: '350px', padding: '8px' })),
+        transition('hide => show', [animate('300ms ease-out')]),
+        transition('show => hide', [animate('300ms ease-in')]),
       ]
     )
   ]
@@ -42,9 +42,13 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   @Input()
   public showMenu: boolean;
 
+  @Output()
+  public loaderDisplayEvent: EventEmitter<string>;
+
   constructor(private fuelPriceHistoryService: FuelPriceHistoryService) {
     this.updateFuelsPricesHistoryEvent = new EventEmitter();
     this.createFuelPriceHistoryEvent = new EventEmitter();
+    this.loaderDisplayEvent = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -56,7 +60,13 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
 
   /**Upload .CSV File */
   public uploadFile() {
-    this.fuelPriceHistoryService.upload(this.file).subscribe(() => this.getFuelPriceHistories());
+    this.loaderDisplayEvent.emit('block');
+    this.fuelPriceHistoryService.upload(this.file).subscribe({
+      complete: () => {
+        this.getFuelPriceHistories();
+        this.loaderDisplayEvent.emit('none');
+      }
+    });
   }
 
   /**Create New fuel price */
@@ -75,8 +85,8 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
       'R$ / litro'));
   }
 
-  public refreshList(s: string){
-    if(!s){
+  public refreshList(s: string) {
+    if (!s) {
       this.getFuelPriceHistories();
       this.fuelPriceHistoryService.resetCurrentApiUrl()
     }
@@ -113,6 +123,8 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
   }
 
   public findAvgSalesPriceBannerName(banner: string) {
+    console.log(banner);
+
     this.fuelPriceHistoryService.findAvgSalesPriceBannerName(banner.toUpperCase()).subscribe((avg: number) => {
       this.avgSalesPriceBannerName = avg.toFixed(2);
     });
@@ -136,8 +148,8 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
     });
   }
 
-  public getFuelPriceHistoryByDate(date: Date) {
-    this.fuelPriceHistoryService.getFuelPriceHistoryByDate(date).subscribe((data: Page<FuelPriceHistory>) => {
+  public getFuelPriceHistoryByDate(registreDate: Date) {
+    this.fuelPriceHistoryService.getFuelPriceHistoryByDate(registreDate).subscribe((data: Page<FuelPriceHistory>) => {
       this.updateFuelsPricesHistoryEvent.emit(data);
     });
   }
