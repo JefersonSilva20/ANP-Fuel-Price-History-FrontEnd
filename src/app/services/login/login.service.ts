@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { API_BASE_URL } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private readonly API_SIGN_IN = 'http://localhost:8080/login';
+  private readonly API_SIGN_IN = `${API_BASE_URL}/login`;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

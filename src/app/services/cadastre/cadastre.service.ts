@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROLE_ADMIN, ROLE_USER } from 'src/app/models/role/roles-constant';
 import { User } from '../../models/user/user';
+import { API_BASE_URL } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { User } from '../../models/user/user';
 
 export class CadastreService {
 
-  private readonly API_SIGN_UP = 'http://localhost:8080/users/sign-up';
+  private readonly API_SIGN_UP = `${API_BASE_URL}/users/sign-up`;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

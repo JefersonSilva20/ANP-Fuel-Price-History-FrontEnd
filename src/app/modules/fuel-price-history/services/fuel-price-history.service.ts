@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FuelPriceHistory } from 'src/app/models/fuel-price-history/fuel-price-history';
 import { Page } from 'src/app/models/pagination/page/page';
+import { API_BASE_URL } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class FuelPriceHistoryService {
   private authHeader: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://localhost:8080/fuelsPricesHistory';
+    this.apiUrl = `${API_BASE_URL}/fuelsPricesHistory`;
     this.currentApiUrl = this.apiUrl;
     this.apifilePath = '/import';
     this.pagePath = '?page=';
