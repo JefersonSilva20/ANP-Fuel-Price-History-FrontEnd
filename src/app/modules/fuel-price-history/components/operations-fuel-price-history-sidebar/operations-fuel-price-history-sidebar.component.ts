@@ -18,10 +18,9 @@ import { Banner } from 'src/app/models/banner/banner';
     trigger(
       'hidden',
       [
-        state('hide', style({ overflow: 'hidden', width: 0, margin: 0, padding: '8px 0', 'margin-right': 0 })),
-        state('show', style({ width: '350px', padding: '8px' })),
-        transition('hide => show', [animate('300ms ease-out')]),
-        transition('show => hide', [animate('300ms ease-in')]),
+        state('hide', style({width:0,overflow: 'hidden', padding:0, margin: 0})),
+        state('show', style({width: '350px'})),
+        transition('hide <=> show', [animate('300ms ease-in')]),
       ]
     )
   ]
