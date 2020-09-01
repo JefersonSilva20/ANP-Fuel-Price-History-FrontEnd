@@ -132,6 +132,6 @@ export class FuelPriceHistoryService {
   }
 
   delete(id: number) {
-    this.http.delete(`${this.apiUrl}/${id}`, { headers: this.authHeader });
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.authHeader });
   }
 }

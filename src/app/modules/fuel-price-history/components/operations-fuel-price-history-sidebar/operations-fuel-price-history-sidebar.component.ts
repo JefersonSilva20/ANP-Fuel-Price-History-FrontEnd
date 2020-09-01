@@ -91,7 +91,7 @@ export class OperationsFuelPriceHistorySidebarComponent implements OnInit {
     }
   }
 
-  getFuelPriceHistories() {
+  public getFuelPriceHistories() {
     this.fuelPriceHistoryService.findAll().subscribe((data: Page<FuelPriceHistory>) => {
       this.updateFuelsPricesHistoryEvent.emit(data);
     })

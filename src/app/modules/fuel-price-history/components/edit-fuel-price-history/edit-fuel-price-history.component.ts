@@ -31,7 +31,7 @@ export class EditFuelPriceHistoryComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  toUpperCase(s:String){
+  toUpperCase(s: String) {
     return s.toUpperCase;
   }
 
@@ -47,7 +47,10 @@ export class EditFuelPriceHistoryComponent implements OnInit {
   }
 
   public delete() {
-    this.fuelPriceHistoryService.delete(this.fuelPriceHistory.id);
-    this.fuelPriceRemoveEvent.emit(this.fuelPriceHistory);
+    this.fuelPriceHistoryService.delete(this.fuelPriceHistory.id).subscribe({
+      complete: () => {
+        this.fuelPriceRemoveEvent.emit(this.fuelPriceHistory);
+      }
+    });
   }
 }
