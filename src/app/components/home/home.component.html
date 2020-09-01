@@ -1,12 +1,23 @@
 <app-navbar (showMenuEvent)=showMenu($event) [menuIsShow]=menuIsShow></app-navbar>
 <div class="operations">
-    <app-operations-fuel-price-history-sidebar (loaderDisplayEvent)=loaderDisplayStatus($event) [showMenu]=menuIsShow
+    <app-operations-fuel-price-history-sidebar 
+        [showMenu]=menuIsShow
+        (loaderDisplayEvent)=loaderDisplayStatus($event)
         (createFuelPriceHistoryEvent)=updateFuelPriceSelect($event)
-        (updateFuelsPricesHistoryEvent)=updateFuelsPrices($event)></app-operations-fuel-price-history-sidebar>
-    <app-list-fuel-price-history [loaderDisplayStatus]=loaderDisplay [showMenu]=menuIsShow (fuelsPriceHistoryChangeEvent)=updateFuelsPrices($event)
-        (fuelPriceHistorySelectEvent)=updateFuelPriceSelect($event) [fuelPriceHistories]=fuelPriceHistories
-        [fuelPriceHistorySelect]=fuelPriceHistorySelected></app-list-fuel-price-history>
+        (updateFuelsPricesHistoryEvent)=updateFuelsPrices($event)>
+    </app-operations-fuel-price-history-sidebar>
+    <app-list-fuel-price-history
+        [loaderDisplayStatus]=loaderDisplay 
+        [showMenu]=menuIsShow
+        [fuelPriceHistories]=fuelPriceHistories
+        [fuelPriceHistorySelect]=fuelPriceHistorySelected 
+        (fuelsPriceHistoryChangeEvent)=updateFuelsPrices($event)
+        (fuelPriceHistorySelectEvent)=updateFuelPriceSelect($event)>
+    </app-list-fuel-price-history>
 </div>
-<app-edit-fuel-price-history (fuelCreateEvent)=addFuelPrice($event) (fuelPriceRemoveEvent)=removeFuelPrice($event)
-    (fuelPriceSaveEvent)=updateFuelPrice($event) [fuelPriceHistory]=fuelPriceHistorySelected>
+<app-edit-fuel-price-history
+    [fuelPriceHistory]=fuelPriceHistorySelected
+    (fuelCreateEvent)=addFuelPrice($event) 
+    (fuelPriceRemoveEvent)=removeFuelPrice($event)
+    (fuelPriceSaveEvent)=updateFuelPrice($event)>
 </app-edit-fuel-price-history>

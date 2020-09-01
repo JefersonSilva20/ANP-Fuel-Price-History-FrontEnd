@@ -72,8 +72,9 @@ export class ListFuelPriceHistoryComponent implements OnInit {
   }
 
   public getLastPage() {
+    let lastPage= this.fuelPriceHistories.totalPages-1;    
     if (this.fuelPriceHistories.totalElements != 0) {
-      this.fuelPriceHistoryService.getNextPage(Math.floor(this.fuelPriceHistories.totalElements / 20)).subscribe((data) => {
+      this.fuelPriceHistoryService.getNextPage(lastPage).subscribe((data) => {
         this.fuelsPriceHistoryChangeEvent.emit(data);
       });
     }
