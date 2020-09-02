@@ -1,5 +1,12 @@
+div.sm{
+    width: 300px;
+}
 input{
     margin: 0;
+}
+
+input.sm{
+    width: 64px !important;
 }
 
 div.input-group{

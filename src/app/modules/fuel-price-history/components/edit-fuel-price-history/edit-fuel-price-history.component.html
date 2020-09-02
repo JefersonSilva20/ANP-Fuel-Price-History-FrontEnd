@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header d-flex align-items-center">
                 <h5 class="modal-title" id="staticBackdropLabel">Histórico de Preço</h5>
@@ -13,89 +13,121 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Região</span>
+                    <div class="d-flex">
+                        <div class="d-flex">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Região</span>
+                                </div>
+                                <input name="region" [ngModel]="fuelPriceHistory.region.name"
+                                    (ngModelChange)="fuelPriceHistory.region.name = $event.toUpperCase()" type="text"
+                                    class="form-control w-10" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
+                                </div>
+                                <input name="state" [ngModel]="fuelPriceHistory.state.uf"
+                                    (ngModelChange)="fuelPriceHistory.state.uf = $event.toUpperCase()" type="text"
+                                    class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
                         </div>
-                        <input name="region" [ngModel]="fuelPriceHistory.region.name" (ngModelChange)="fuelPriceHistory.region.name = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Município</span>
+                            </div>
+                            <input name="county" [ngModel]="fuelPriceHistory.county.name"
+                                (ngModelChange)="fuelPriceHistory.county.name = $event.toUpperCase()" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
+                        </div>
+
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
+                    <div class="d-flex">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Revendedora</span>
+                            </div>
+                            <input name="resellerName" [ngModel]="fuelPriceHistory.reseller.name"
+                                (ngModelChange)="fuelPriceHistory.reseller.name = $event.toUpperCase()" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <input name="state" [ngModel]="fuelPriceHistory.state.uf" (ngModelChange)="fuelPriceHistory.state.uf = $event.toUpperCase()"  type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">CNPJ</span>
+                            </div>
+                            <input name="resellerCNPJ" [ngModel]="fuelPriceHistory.reseller.cnpj"
+                                (ngModelChange)="fuelPriceHistory.reseller.cnpj = $event.toUpperCase()" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Município</span>
+                    <div class="d-flex">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Produto</span>
+                            </div>
+                            <input name="product" [ngModel]="fuelPriceHistory.product.name"
+                                (ngModelChange)="fuelPriceHistory.product.name = $event.toUpperCase()" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <input name="county" [ngModel]="fuelPriceHistory.county.name" (ngModelChange)="fuelPriceHistory.county.name = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Bandeira</span>
+                            </div>
+                            <input name="banner" [ngModel]="fuelPriceHistory.banner.name"
+                                (ngModelChange)="fuelPriceHistory.banner.name = $event.toUpperCase()" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Revendedora</span>
+                    <div class="d-flex">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Compra</span>
+                            </div>
+                            <input name="purchasePrice" [(ngModel)]="fuelPriceHistory.purchasePrice" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <input name="resellerName" [ngModel]="fuelPriceHistory.reseller.name" (ngModelChange)="fuelPriceHistory.reseller.name = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Venda</span>
+                            </div>
+                            <input name="salePrice" [(ngModel)]="fuelPriceHistory.salePrice" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">CNPJ</span>
+                    <div class="d-flex">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Unidade de Medida</span>
+                            </div>
+                            <input name="measurementUnit" [(ngModel)]="fuelPriceHistory.measurementUnit" type="text"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <input name="resellerCNPJ" [ngModel]="fuelPriceHistory.reseller.cnpj" (ngModelChange)="fuelPriceHistory.reseller.cnpj = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Produto</span>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Data de Coleta</span>
+                            </div>
+                            <input name="registreDate" [(ngModel)]="fuelPriceHistory.registreDate" type="text" pattern="[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"
+                                class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <input name="product" [ngModel]="fuelPriceHistory.product.name" (ngModelChange)="fuelPriceHistory.product.name = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Data de Coleta</span>
-                        </div>
-                        <input name="registreDate" [(ngModel)]="fuelPriceHistory.registreDate" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Compra</span>
-                        </div>
-                        <input name="purchasePrice" [(ngModel)]="fuelPriceHistory.purchasePrice" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Preço de Venda</span>
-                        </div>
-                        <input name="salePrice" [(ngModel)]="fuelPriceHistory.salePrice" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Unidade de Medida</span>
-                        </div>
-                        <input name="measurementUnit" [(ngModel)]="fuelPriceHistory.measurementUnit" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Bandeira</span>
-                        </div>
-                        <input name="banner" [ngModel]="fuelPriceHistory.banner.name" (ngModelChange)="fuelPriceHistory.banner.name = $event.toUpperCase()" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button (click)="delete()" *ngIf="fuelPriceHistory.id!=0" type="button" class="btn btn-danger" data-dismiss="modal">Deletar Registro</button>
-                <button (click)="saveData()"  type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
+                <button (click)="delete()" *ngIf="fuelPriceHistory.id!=0" type="button" class="btn btn-danger"
+                    data-dismiss="modal">Deletar Registro</button>
+                <button (click)="saveData()" type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
             </div>
         </div>
     </div>
